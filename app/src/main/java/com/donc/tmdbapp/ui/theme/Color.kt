@@ -2,10 +2,8 @@ package com.donc.tmdbapp.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-/*
-Este tema de colores fue generado usando los colores del logo de TMDB
-mediante el theme-builder oficial (https://m3.material.io/theme-builder#/custom)
-*/
+/* Este tema de colores fue generado usando los colores del logo de TMDB
+mediante el theme-builder oficial (https://m3.material.io/theme-builder#/custom) */
 val md_theme_light_primary = Color(0xFF1460A5)
 val md_theme_light_onPrimary = Color(0xFFFFFFFF)
 val md_theme_light_primaryContainer = Color(0xFFD3E4FF)
