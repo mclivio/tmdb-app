@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.donc.tmdbapp.movielist.MovieListScreen
 import com.donc.tmdbapp.ui.theme.TmdbAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,7 +25,7 @@ class MainActivity : ComponentActivity() {
                 NavHost(navController = navController, startDestination = "movies_list")
                 {
                     composable("movies_list") {
-                        //Todo: Composable que muestre listado de peliculas populares
+                        MovieListScreen(navController = navController)
                     }
                     composable(
                         "movie_details/{movie_id}",
