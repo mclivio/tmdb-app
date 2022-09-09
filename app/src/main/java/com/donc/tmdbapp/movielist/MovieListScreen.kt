@@ -15,6 +15,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.BottomCenter
 import androidx.compose.ui.Alignment.Companion.Center
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
@@ -74,6 +75,7 @@ fun MoviesList(
     val moviesList by remember { viewModel.moviesList }
     val endReached by remember { viewModel.endReached }
     val isLoading by remember { viewModel.isLoading }
+    val loadError by remember { viewModel.loadError }
 
     LazyColumn(contentPadding = PaddingValues(12.dp)) {
         val itemCount = if (moviesList.size % 2 == 0) {
@@ -94,6 +96,11 @@ fun MoviesList(
     ) {
         if (isLoading) {
             CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
+        }
+        if (loadError.isNotEmpty()) {
+            RetrySection(error = loadError) {
+                viewModel.loadMoviesPaginated()
+            }
         }
     }
 }
@@ -239,5 +246,22 @@ fun SearchBar(
                 }
             }
         )
+    }
+}
+
+@Composable
+fun RetrySection(
+    error: String,
+    onRetry: () -> Unit
+) {
+    Column() {
+        Text(error, color = MaterialTheme.colorScheme.error, fontSize = 24.sp, textAlign = TextAlign.Center)
+        Spacer(modifier = Modifier.height(10.dp))
+        Button(
+            onClick = { onRetry() },
+            modifier = Modifier.align(CenterHorizontally)
+        ) {
+            Text(text = "Reintentar")
+        }
     }
 }
