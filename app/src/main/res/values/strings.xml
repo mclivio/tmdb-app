@@ -3,4 +3,5 @@
     <string name="search_hint">Buscar…</string>
     <string name="desc_logo">The Movie Database Logo</string>
     <string name="desc_search">Icono de Busqueda</string>
+    <string name="button_retry">Reintentar</string>
 </resources>

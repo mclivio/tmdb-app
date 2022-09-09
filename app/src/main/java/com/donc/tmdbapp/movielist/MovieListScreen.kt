@@ -43,7 +43,8 @@ import com.donc.tmdbapp.util.Constants.IMAGE_URL
 //TODO: Revisar Estilos en general. Agregar animaciones
 @Composable
 fun MovieListScreen(
-    navController: NavController
+    navController: NavController,
+    viewModel: MovieListViewModel = hiltViewModel()
 ) {
     Surface(
         color = MaterialTheme.colorScheme.background,
@@ -55,13 +56,13 @@ fun MovieListScreen(
                 contentDescription = stringResource(R.string.desc_logo),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .align(Alignment.CenterHorizontally)
+                    .align(CenterHorizontally)
                     .padding(24.dp)
             )
-            SearchBar() {
-                //TODO: Implementar busqueda en viewModel
+            SearchBar {
+                viewModel.searchMoviesList(it)
             }
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(18.dp))
             MoviesList(navController = navController)
         }
     }
@@ -76,6 +77,7 @@ fun MoviesList(
     val endReached by remember { viewModel.endReached }
     val isLoading by remember { viewModel.isLoading }
     val loadError by remember { viewModel.loadError }
+    val isSearching by remember { viewModel.isSearching }
 
     LazyColumn(contentPadding = PaddingValues(12.dp)) {
         val itemCount = if (moviesList.size % 2 == 0) {
@@ -84,7 +86,7 @@ fun MoviesList(
             moviesList.size / 2 + 1
         }
         items(itemCount) {
-            if (it >= itemCount - 1 && !endReached && !isLoading) {
+            if (it >= itemCount - 1 && !endReached && !isLoading && !isSearching) {
                 viewModel.loadMoviesPaginated()
             }
             MovieRow(rowIndex = it, moviesList, navController)
@@ -254,14 +256,14 @@ fun RetrySection(
     error: String,
     onRetry: () -> Unit
 ) {
-    Column() {
+    Column {
         Text(error, color = MaterialTheme.colorScheme.error, fontSize = 24.sp, textAlign = TextAlign.Center)
         Spacer(modifier = Modifier.height(10.dp))
         Button(
             onClick = { onRetry() },
             modifier = Modifier.align(CenterHorizontally)
         ) {
-            Text(text = "Reintentar")
+            Text(text = stringResource(R.string.button_retry))
         }
     }
 }
