@@ -162,7 +162,7 @@ fun MovieEntry(
                     .placeholder(CircularProgressDrawable(LocalContext.current))
                     .crossfade(true)
                     .build(),
-                contentDescription = entry.title,
+                contentDescription = stringResource(R.string.desc_poster) + entry.title,
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier
                     .fillMaxSize()

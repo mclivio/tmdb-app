@@ -3,5 +3,10 @@
     <string name="search_hint">Buscar…</string>
     <string name="desc_logo">The Movie Database Logo</string>
     <string name="desc_search">Icono de Busqueda</string>
+    <string name="desc_poster">Poster de </string>
+    <string name="desc_popularity">Icono de Rating</string>
     <string name="button_retry">Reintentar</string>
+    <string name="button_back">Volver</string>
+    <string name="label_language">Idioma Original: </string>
+    <string name="label_date">Fecha De Estreno: </string>
 </resources>

@@ -11,6 +11,5 @@ object Constants {
 
     const val LANGUAGE = "es-ES"
 
-    //TODO: Implementar MovieEntry. Esta url va a ser necesaria ↓
     const val IMAGE_URL = "https://image.tmdb.org/t/p/w500/"
 }

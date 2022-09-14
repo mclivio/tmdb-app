@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.donc.tmdbapp.moviedetails.MovieDetailsScreen
 import com.donc.tmdbapp.movielist.MovieListScreen
 import com.donc.tmdbapp.ui.theme.TmdbAppTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,7 +35,12 @@ class MainActivity : ComponentActivity() {
                         val movie_id = remember {
                             it.arguments?.getInt("movie_id")
                         }
-                        //Todo: Composable que muestre detalles de una pelicula (género, idioma original, popularidad, fecha de estreno, entre otras).
+                        if (movie_id != null) {
+                            MovieDetailsScreen(
+                                movie_id = movie_id,
+                                navController = navController
+                            )
+                        }
                     }
                 }
             }
